@@ -1,0 +1,13 @@
+{
+  "name": "@marduke182/reviewer-lib",
+  "version": "0.0.0",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esm/index.js",
+  "main:ts": "src/index.ts",
+  "types": "dist/commonjs/index.d.ts",
+  "author": "Jesús Q",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

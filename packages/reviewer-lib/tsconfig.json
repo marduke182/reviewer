@@ -1,0 +1,12 @@
+{
+  "extends": "../../",
+  "references": [],
+  "compilerOptions": {
+    "rootDir": "src/",
+    "outDir": "./dist/commonjs"
+  },
+  "files": [
+    "./src/typings/react-property.ts"
+  ],
+  "include": ["./src/**/*"]
+}

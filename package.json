@@ -1,0 +1,81 @@
+{
+  "name": "reviewer",
+  "version": "1.0.0",
+  "description": "Reviewers monorepo",
+  "main": "index.js",
+  "author": "marduke182",
+  "license": "MIT",
+  "private": true,
+  "comment": {
+    "scripts": {
+      "build": "We need to compile cjs first, because TypeScript doesn't know how to resolve module main field: https://github.com/microsoft/TypeScript/issues/21423"
+    }
+  },
+  "scripts": {
+    "prepublish": "yarn build",
+    "clean": "yarn clean:cjs && yarn clean:esm",
+    "clean:cjs": "yarn build:cjs --clean",
+    "clean:esm": "yarn build:esm --clean",
+    "build": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "yarn tsc -b",
+    "build:esm": "yarn tsc -b tsconfig.esm.json",
+    "lint": "jest --config jest.eslint.config.js",
+    "test": "jest",
+    "typecheck": "tsc -b tsconfig.typecheck.json ",
+    "release-canary": "yarn lerna publish --canary --preid beta --dist-tag beta --yes"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "prettier --write"
+  },
+  "workspaces": [
+    "packages/*",
+    "storybooks/*",
+    ".yalc/*"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "hygen": {
+    "namespace": "@marduke182"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@types/jest": "^26.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "core-js": "3",
+    "cz-conventional-changelog": "3.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "husky": "^4.2.3",
+    "jest": "^26.1.0",
+    "jest-junit": "^11.0.1",
+    "jest-runner-eslint": "^0.10.0",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.1.1",
+    "ts-jest": "^26.1.3"
+  },
+  "dependencies": {
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  }
+}

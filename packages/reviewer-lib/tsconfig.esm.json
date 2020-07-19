@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.shared",
+  "references": [],
+  "compilerOptions": {
+    "module": "esnext",
+    "rootDir": "src/",
+    "outDir": "./dist/esm"
+  },
+  "include": ["./src/**/*"]
+}
